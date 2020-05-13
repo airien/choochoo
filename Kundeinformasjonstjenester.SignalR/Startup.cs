@@ -19,7 +19,15 @@ namespace Kundeinformasjonstjenester.SignalR
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IScreenConnectionRepository>(repository);
+            services.AddSingleton<IScreenConnectionRepository>(repository); 
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials()
+                       .WithOrigins("http://localhost:3000");
+            }));
             services.AddSignalR(options => {
                 options.EnableDetailedErrors = true;
             });
@@ -39,7 +47,7 @@ namespace Kundeinformasjonstjenester.SignalR
                 app.UseHsts();
             }
 
-
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
@@ -48,7 +56,10 @@ namespace Kundeinformasjonstjenester.SignalR
                 endpoints.MapControllerRoute(
                            name: "default",
                            pattern: "{controller}/{action=Index}/{id?}");
-                endpoints.MapHub<ScreenHub>("/screen");
+            });
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ScreenHub>("/screen");
             });
         }
     }

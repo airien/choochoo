@@ -20,9 +20,9 @@ namespace Kundeinformasjonstjenester.SignalR.Hubs
         public override Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();
-            var station = httpContext.Request.Query["station"];
-            var track = httpContext.Request.Query["track"];
-            var screen = httpContext.Request.Query["screen"];
+            var station = httpContext.Request.Query["stationId"];
+            var track = httpContext.Request.Query["trackID"];
+            var screen = httpContext.Request.Query["screenId"];
             //TODO: sikkerhet
             ScreenConnection connection = new ScreenConnection
             {

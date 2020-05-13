@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Kundeinformasjon.DataAccessLayer\Kundeinformasjonstjenester.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\Kundeinformasjonstjenester.DataAccessLayer\Kundeinformasjonstjenester.DataAccessLayer.csproj" />
   </ItemGroup>
 
 </Project>
