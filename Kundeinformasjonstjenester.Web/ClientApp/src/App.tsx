@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import InformationAdmin from './components/InformationAdmin';
 import Information from './components/Information';
+import Connections from './components/Connections';
 
 import './custom.css'
 
@@ -13,6 +14,7 @@ export default () => (
         <Route exact path='/' component={Home} />
         <Route path='/admin' component={InformationAdmin} />
         <Route path='/info/:id?' component={Information} />
+        <Route path='/connections' component={Connections} />
     </Layout>
     </BrowserRouter>
 );

@@ -18,15 +18,17 @@ namespace Kundeinformasjonstjenester.SignalR
         {
             services.AddHttpClient<IConnectionService, ConnectionService>();
             services.AddSingleton<IScreenConnectionRepository, ScreenConnectionRepository>();
-            services.AddControllersWithViews();
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader()
                        .AllowCredentials()
-                       .WithOrigins("http://localhost:3000");
+                       .WithOrigins("http://localhost:3000", "https://localhost:44353");
             }));
+
+            services.AddControllers();
+            services.AddControllersWithViews();
             services.AddSignalR(options => {
                 options.EnableDetailedErrors = true;
             });

@@ -13,7 +13,7 @@ const Screen = () => {
     if (!connection && !failed && !hubConnection) {
       const hubConnection = new signalR.HubConnectionBuilder()
         .withUrl(
-          "https://localhost:44364/screen?stationId=1&trackId=1&screenId=123"
+          "https://localhost:44364/screen?stationId=1&trackId=1&screenId=AB"
         )
         .configureLogging(signalR.LogLevel.Information)
         .build();

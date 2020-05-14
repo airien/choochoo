@@ -58,7 +58,27 @@ const InformationAdmin = () => {
   const changeScreen = (v: Screen) => {
     setSelectedScreen(v);
   };
-
+  function post(){
+    if(selectedStation && selectedTrack && selectedScreen) {
+      fetch('https://localhost:44364/api/connection/update', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify({
+          stationId: selectedStation.id,
+          trackId: selectedTrack.id,
+          screenId: selectedScreen.id,
+          url:selectedUrl
+      })
+      }).then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        console.log("posted with response: ",data);
+      });
+    }
+  }
   return (
     <Fragment>
       <Grid container className={classes.root} spacing={2}>
@@ -107,7 +127,7 @@ const InformationAdmin = () => {
                   id="bilde"
                   label="Bildeurl"
                   defaultValue=""
-                  helperText="BildeUrl"
+                  helperText="Url"
                   variant="outlined"
                   onChange={(value) => setSelectedUrl(value.target.value)}
                 />
@@ -127,7 +147,7 @@ const InformationAdmin = () => {
           </div>
         </Paper>
         <Grid item>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={() => post()}>
             Send
           </Button>
         </Grid>

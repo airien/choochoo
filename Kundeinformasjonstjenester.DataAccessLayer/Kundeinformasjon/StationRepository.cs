@@ -21,7 +21,7 @@ namespace Kundeinformasjonstjenester.DataAccessLayer.Kundeinformasjon
             Stations.Add("1", new Station
             {
                 Id = "1",
-                Name = "Oslo S",
+                Name = "OSL",
                 Tracks = new List<Track> { new Track { Id = "1", Name = "1", Screens = new List<Screen> {new Screen{Id="AB",Name="SkjermAB" } } },
                 new Track { Id = "2", Name = "2" , Screens = new List<Screen> {new Screen{Id="savadfa",Name="Skjermsavadfa" } } },
                 new Track { Id = "3", Name = "3", Screens = new List<Screen> {new Screen{Id= "sadav", Name="Skjermsadav" } }  },
