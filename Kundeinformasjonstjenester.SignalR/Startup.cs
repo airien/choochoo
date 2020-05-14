@@ -14,12 +14,11 @@ namespace Kundeinformasjonstjenester.SignalR
 {
     public class Startup
     {
-
-        private IScreenConnectionRepository repository = new ScreenConnectionRepository();
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient<IConnectionService, ConnectionService>();
+            services.AddSingleton<IScreenConnectionRepository, ScreenConnectionRepository>();
             services.AddControllersWithViews();
-            services.AddSingleton<IScreenConnectionRepository>(repository); 
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
                 builder.AllowAnyOrigin()

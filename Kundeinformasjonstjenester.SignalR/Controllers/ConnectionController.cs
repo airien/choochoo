@@ -38,6 +38,7 @@ namespace Kundeinformasjonstjenester.SignalR.Controllers
             var connection = Repository.Get(update);
             if(connection != null)
             {
+                //var response = await Repository.FetchUpdateAsync(update);
                 await HubContext.Clients.Client(connection.ConnectionId).ConnectToUrl(update.Url);
                 return Ok("Message Sent");
             }

@@ -2,21 +2,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Net.Http;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 
 namespace Kundeinformasjonstjenester.DataAccessLayer.ScreenHub
 {
     public interface IScreenConnectionRepository
     {
-        public ScreenConnection Get(ScreenUpdate update);
-        public ScreenConnection Get(string connectionId);
-        public IEnumerable<ScreenConnection> Get();
+        ScreenConnection Get(ScreenUpdate update);
+        ScreenConnection Get(string connectionId);
+        IEnumerable<ScreenConnection> Get();
         public ScreenConnection Add(ScreenConnection station);
-        public bool Delete(string id);
+        bool Delete(string id);
         void Replace(ScreenConnection connection);
+        Task<string> FetchUpdateAsync(ScreenUpdate update);
     }
     public class ScreenConnectionRepository : IScreenConnectionRepository
     {
+        public IConnectionService Service { get; }
+
+        public ScreenConnectionRepository(IConnectionService service)
+        {
+            Service = service;
+        }
+
         //TODO: Implement Redis
         private Dictionary<string, ScreenConnection> Connections { get; set; } = new Dictionary<string, ScreenConnection>();
         public ScreenConnection Add(ScreenConnection connection)
@@ -40,6 +50,11 @@ namespace Kundeinformasjonstjenester.DataAccessLayer.ScreenHub
                 return true;
             }
             return false;
+        }
+
+        public async Task<string> FetchUpdateAsync(ScreenUpdate update)
+        {
+            return await Service.FetchUrlAsync(update.Url);
         }
 
         public ScreenConnection Get(string connectionId)
