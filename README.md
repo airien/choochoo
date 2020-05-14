@@ -1,7 +1,7 @@
 # The Choochoo project.
 This is a startup project to try out ideas about updating connected browsers from an url
 
-![alt text](arkitektur.png "Arkitektur")
+![alt text](arkitektur.PNG "Arkitektur")
 
 ## Components
 
