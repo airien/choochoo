@@ -1,9 +1,10 @@
 # The ScreenWeb.
-This is the webapplication that shows url content in a IFrame. The content can be updated by sending a post request with the station, track and/or screen to update to to the ConnectionAPI
-Todo: 
+This is the webapplication that will let users push content and updates to screens
+TODO:
+- Security and Login
 - Styling
-- Security
-- Do some sort of choosing what to connect as in a start up screen
+- Proper homepage
+
 ## Available Scripts
 
 In the project directory, you can run:
